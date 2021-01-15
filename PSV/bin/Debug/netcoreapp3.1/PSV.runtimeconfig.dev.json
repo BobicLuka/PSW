@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\Milana\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Milana\\.nuget\\packages"
+    ]
+  }
+}
