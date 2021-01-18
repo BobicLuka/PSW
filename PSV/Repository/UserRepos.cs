@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PSV.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,12 +11,29 @@ namespace PSV.Repository
         
             ProjectContext context;
 
-            public TerminRepos(ProjectContext context)
+        public UserRepos(ProjectContext context)
 
-            {
-                this.context = context;
-            }
+        {
+            this.context = context;
         }
+
+
+        public User Get(int id)
+        {
+            return this.context.Set<User>().Find(id);
+        }
+
+
+        public List<User> GetAll()
+        {
+
+            return context.Set<User>().ToList();
+        }
+
+
+    }
+
+        
 
     }
 

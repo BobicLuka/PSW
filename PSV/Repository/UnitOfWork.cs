@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PSV.Repository
 {
-    public class UnitOfWork : UnitOfWork
+    public class UnitOfWork : IDisposable
 
     {
         private readonly ProjectContext context;

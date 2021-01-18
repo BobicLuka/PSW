@@ -14,7 +14,21 @@ namespace PSV.Repository
         {
             this.context = context;
         }
+      
 
+
+        public Sheduling Get(int id)
+            {
+                return this.context.Set<Sheduling>().Find(id);
+            }
+
+
+
+        public List<Sheduling> GetAll()
+        {
+
+            return context.Set<Sheduling>().ToList();
+        }
 
     }
 }

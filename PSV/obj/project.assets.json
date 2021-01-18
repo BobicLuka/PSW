@@ -5834,11 +5834,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Milana\\Desktop\\PSV\\PSV\\PSV.csproj",
+      "projectUniqueName": "C:\\Users\\Milana\\Desktop\\PSW\\PSV\\PSV.csproj",
       "projectName": "PSV",
-      "projectPath": "C:\\Users\\Milana\\Desktop\\PSV\\PSV\\PSV.csproj",
+      "projectPath": "C:\\Users\\Milana\\Desktop\\PSW\\PSV\\PSV.csproj",
       "packagesPath": "C:\\Users\\Milana\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Milana\\Desktop\\PSV\\PSV\\obj\\",
+      "outputPath": "C:\\Users\\Milana\\Desktop\\PSW\\PSV\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Milana\\AppData\\Roaming\\NuGet\\NuGet.Config",
