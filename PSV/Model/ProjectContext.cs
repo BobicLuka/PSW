@@ -15,7 +15,7 @@ namespace PSV.Model
 
         public DbSet<User> Users { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
-        public DbSet<Sheduling> Shedulings { get; set; }
+        public DbSet<Scheduling> Shedulings { get; set; }
         public DbSet<Termin> Termins { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder) { 

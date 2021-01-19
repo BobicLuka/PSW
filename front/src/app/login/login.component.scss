@@ -1,0 +1,25 @@
+#login {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
+
+    h2 {
+        text-align: center;
+    }
+    form {
+        width: 50%;
+        margin: 0 auto;
+    
+        label {
+            display: block;
+        }
+    
+        input {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    }
+}

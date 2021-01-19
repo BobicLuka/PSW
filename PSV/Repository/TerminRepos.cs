@@ -26,5 +26,15 @@ namespace PSV.Repository
 
             return context.Set<Termin>().ToList();
         }
+
+        internal void Add(Termin termin)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void Add(Scheduling scheduling)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

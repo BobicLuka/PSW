@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PSV.Model
 {
-    public class Sheduling
+    public class Scheduling
     {
         public int ID { get; set; }
 

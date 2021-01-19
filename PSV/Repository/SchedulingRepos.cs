@@ -17,17 +17,17 @@ namespace PSV.Repository
       
 
 
-        public Sheduling Get(int id)
+        public Scheduling Get(int id)
             {
-                return this.context.Set<Sheduling>().Find(id);
+                return this.context.Set<Scheduling>().Find(id);
             }
 
 
 
-        public List<Sheduling> GetAll()
+        public List<Scheduling> GetAll()
         {
 
-            return context.Set<Sheduling>().ToList();
+            return context.Set<Scheduling>().ToList();
         }
 
     }

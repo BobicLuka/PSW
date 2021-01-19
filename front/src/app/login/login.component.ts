@@ -1,6 +1,7 @@
 import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from '../services/userService';
 
 @Component({
   selector: 'app-login',
@@ -14,17 +15,18 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private userService: UserService
 ) {
 
   this.loginForm = this.formBuilder.group({
-    username: ['', Validators.required],
+    email: ['', Validators.required],
     password: ['', Validators.required]
 });
 }
 
 ngOnInit() {
     this.loginForm = this.formBuilder.group({
-        username: ['', Validators.required],
+        email: ['', Validators.required],
         password: ['', Validators.required]
     });
 }
@@ -37,6 +39,10 @@ onSubmit() {
     if (this.loginForm.invalid) {
         return;
     }
+
+    this.userService.login(this.loginForm.value).subscribe(data => {
+      localStorage.setItem('token', data['token']);
+    });
 }
 
 }

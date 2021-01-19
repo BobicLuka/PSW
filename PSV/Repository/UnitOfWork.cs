@@ -34,6 +34,7 @@ namespace PSV.Repository
         
         }
 
+        public object Shedulings { get; internal set; }
 
         public int Complete()
         {

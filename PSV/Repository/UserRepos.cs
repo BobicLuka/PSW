@@ -23,6 +23,11 @@ namespace PSV.Repository
             return this.context.Set<User>().Find(id);
         }
 
+        public User GetUserWithEmailAndPassword(string email, string password) 
+        {
+            return context.Set<User>().Where(x => x.Email == email && x.Password == password ).FirstOrDefault();
+        }
+
 
         public List<User> GetAll()
         {
@@ -30,7 +35,20 @@ namespace PSV.Repository
             return context.Set<User>().ToList();
         }
 
+        public void Add(User user) 
+        {
+            context.Set<User>().Add(user);
+        }
 
+        internal void Add(Feedback feedback)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void Add(object termin)
+        {
+            throw new NotImplementedException();
+        }
     }
 
         

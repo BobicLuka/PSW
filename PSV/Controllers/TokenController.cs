@@ -15,6 +15,8 @@ using JwtRegisteredClaimNames = System.IdentityModel.Tokens.Jwt.JwtRegisteredCla
 
 namespace PSV.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class TokenController : Controller
     {
         private IConfiguration configuration;
@@ -27,7 +29,6 @@ namespace PSV.Controllers
         }
 
         [HttpPost]
-
         public async Task<ActionResult> Post(User userData)
 
         {
@@ -42,7 +43,7 @@ namespace PSV.Controllers
             {
                 using (var unitOfWork = new UnitOfWork(new ProjectContext()))
                 {
-
+                    user = unitOfWork.Users.GetUserWithEmailAndPassword(userData.Email, userData.Password);
                 }
 
             }
@@ -65,13 +66,11 @@ namespace PSV.Controllers
             var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(configuration["Jwt:Issuer"], configuration["Jwt:Audience"], claims, expires: DateTime.UtcNow.AddDays(1), signingCredentials: signIn);
-
-            return Ok(new JwtSecurityTokenHandler().WriteToken(token));
-
+            
+            return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token) });
         }
 
         private async Task GetUser(string email, string password)
-
         {
 
 

@@ -9,6 +9,8 @@ import { RegisterComponent } from './register/register.component';
 import { FeedbackListComponent } from './feedback-list/feedback-list.component';
 import { CreateFeedbackComponent } from './create-feedback/create-feedback.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { UserService } from './services/userService';
 
 @NgModule({
   declarations: [
@@ -22,9 +24,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

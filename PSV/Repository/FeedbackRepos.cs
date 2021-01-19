@@ -25,5 +25,10 @@ namespace PSV.Repository
 
             return context.Set<Feedback>().ToList();
         }
+
+        internal void Add(Feedback feedback)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
