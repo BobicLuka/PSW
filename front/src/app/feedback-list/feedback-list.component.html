@@ -1,1 +1,26 @@
-<p>feedback-list works!</p>
+<div id="feedback-list">
+    <h1>Feedbacks</h1>
+    <table mat-table [dataSource]="elements" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+        <!-- Position Column -->
+        <ng-container matColumnDef="comment">
+          <th mat-header-cell *matHeaderCellDef> Comment </th>
+          <td mat-cell *matCellDef="let element"> {{element.komentar}} </td>
+        </ng-container>
+      
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let element">
+                <button (click)="publish($event, element)" *ngIf="element.kom == false">Publish</button>
+                <button (click)="unpublish($event, element)" *ngIf="element.kom == true">Unpublish</button>
+            </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+</div>

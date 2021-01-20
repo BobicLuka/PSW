@@ -11,6 +11,8 @@ import { CreateFeedbackComponent } from './create-feedback/create-feedback.compo
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UserService } from './services/userService';
+import { UsersListComponent } from './users-list/users-list.component';
+import { MatTableModule } from '@angular/material/table'  
 
 @NgModule({
   declarations: [
@@ -18,14 +20,16 @@ import { UserService } from './services/userService';
     LoginComponent,
     RegisterComponent,
     FeedbackListComponent,
-    CreateFeedbackComponent
+    CreateFeedbackComponent,
+    UsersListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

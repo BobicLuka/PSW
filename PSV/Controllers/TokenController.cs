@@ -49,6 +49,9 @@ namespace PSV.Controllers
             }
             catch (Exception e) { }
 
+            if (user == null) {
+                return BadRequest();
+            }
 
             var claims = new[]
             {

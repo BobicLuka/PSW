@@ -41,7 +41,7 @@ onSubmit() {
     }
 
     this.userService.login(this.loginForm.value).subscribe(data => {
-      localStorage.setItem('token', data['token']);
+      localStorage.setItem('token', JSON.stringify(data));
     });
 }
 

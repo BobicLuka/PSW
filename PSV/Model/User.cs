@@ -20,6 +20,8 @@ namespace PSV.Model
         public string Type  { get; set; }
 
         public string Speciality { get; set; }
+
+        public bool Blocked { get; set; }
         
 
 

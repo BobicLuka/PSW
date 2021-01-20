@@ -1,1 +1,18 @@
-<p>create-feedback works!</p>
+<div id="add-feedback">
+    <h2>Add feedback</h2>
+    <form [formGroup]="feedbackForm">
+        <div class="form-group">
+            <label for="komentar">Comment</label>
+            <input type="text" formControlName="komentar" class="form-control" [ngClass]="{ 'is-invalid': f.komentar.errors }" />
+            <div *ngIf=" f.komentar.errors" class="invalid-feedback">
+                <div *ngIf="f.komentar.errors.required">Comment is required</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button  class="btn btn-primary" (click)="onSubmit()">
+                Add
+            </button>
+        </div>
+    </form>
+</div>

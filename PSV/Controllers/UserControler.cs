@@ -12,6 +12,26 @@ namespace PSV.Controllers
     [ApiController]
     public class UserControler : Controller
     {
+        [Route("/api/users/all")]
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            try
+            {
+                using (var unitOfWork = new UnitOfWork(new ProjectContext()))
+                {
+
+                    return Ok(unitOfWork.Users.GetAll());
+                }
+            }
+            catch(Exception e)
+            {
+                BadRequest();
+            }
+
+            return Ok();
+        }
+
         [Route("/api/users/{id}")]
         [HttpGet]
         public async Task<IActionResult> Get(int id)
@@ -54,6 +74,67 @@ namespace PSV.Controllers
             }
 
             return Ok(user);
+        }
+
+        [Route("/api/users/block/{id}")]
+        [HttpPost]
+        public async Task<IActionResult> Block(int id)
+        {
+            try
+            {
+                using (var unitOfWork = new UnitOfWork(new ProjectContext()))
+                {
+
+                    User user = unitOfWork.Users.Get(id);
+
+                    if (user == null) {
+                        return BadRequest();
+                    }
+
+                    user.Blocked = true;
+                    unitOfWork.Context.Set<User>().Attach(user);
+                    unitOfWork.Context.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    unitOfWork.Complete();
+                    return Ok();
+                }
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+
+            return BadRequest();
+        }
+
+        [Route("/api/users/unblock/{id}")]
+        [HttpPost]
+        public async Task<IActionResult> Unblock(int id)
+        {
+            try
+            {
+                using (var unitOfWork = new UnitOfWork(new ProjectContext()))
+                {
+
+                    User user = unitOfWork.Users.Get(id);
+
+                    if (user == null)
+                    {
+                        return BadRequest();
+                    }
+
+                    user.Blocked = false;
+                    unitOfWork.Context.Set<User>().Attach(user);
+                    unitOfWork.Context.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    unitOfWork.Complete();
+                    return Ok();
+                }
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+
+            return BadRequest();
         }
     }
 }

@@ -8,13 +8,10 @@ using System.Threading.Tasks;
 
 namespace PSV.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class FeedbackControler : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         [Route("/api/feedbacks/{id}")]
         [HttpGet]
 
@@ -50,6 +47,7 @@ namespace PSV.Controllers
                 {
 
                     unitOfWork.Feedbacks.Add(feedback);
+                    feedback.Kom = false;
                     unitOfWork.Complete();
                 }
             }
@@ -60,6 +58,89 @@ namespace PSV.Controllers
             }
 
             return Ok(feedback);
+        }
+
+        [Route("/api/feedbacks/all")]
+        [HttpGet]
+
+        public async Task<IActionResult> Get()
+        {
+            try
+            {
+                using (var unitOfWork = new UnitOfWork(new ProjectContext()))
+                {
+
+                    return Ok(unitOfWork.Feedbacks.GetAll());
+                }
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+
+            return BadRequest();
+        }
+
+        [Route("/api/feedbacks/publish/{id}")]
+        [HttpPost]
+        public async Task<IActionResult> Block(int id)
+        {
+            try
+            {
+                using (var unitOfWork = new UnitOfWork(new ProjectContext()))
+                {
+
+                    Feedback feedback = unitOfWork.Feedbacks.Get(id);
+
+                    if (feedback == null)
+                    {
+                        return BadRequest();
+                    }
+
+                    feedback.Kom = true;
+                    unitOfWork.Context.Set<Feedback>().Attach(feedback);
+                    unitOfWork.Context.Entry(feedback).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    unitOfWork.Complete();
+                    return Ok();
+                }
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+
+            return BadRequest();
+        }
+
+        [Route("/api/feedbacks/unpublish/{id}")]
+        [HttpPost]
+        public async Task<IActionResult> Unblock(int id)
+        {
+            try
+            {
+                using (var unitOfWork = new UnitOfWork(new ProjectContext()))
+                {
+
+                    Feedback feedback = unitOfWork.Feedbacks.Get(id);
+
+                    if (feedback == null)
+                    {
+                        return BadRequest();
+                    }
+
+                    feedback.Kom = false;
+                    unitOfWork.Context.Set<Feedback>().Attach(feedback);
+                    unitOfWork.Context.Entry(feedback).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    unitOfWork.Complete();
+                    return Ok();
+                }
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+
+            return BadRequest();
         }
 
     } 

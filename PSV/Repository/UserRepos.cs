@@ -39,16 +39,6 @@ namespace PSV.Repository
         {
             context.Set<User>().Add(user);
         }
-
-        internal void Add(Feedback feedback)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal void Add(object termin)
-        {
-            throw new NotImplementedException();
-        }
     }
 
         

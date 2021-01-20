@@ -26,4 +26,16 @@ export class UserService {
       return this.http.post(this.apiUrl + '/users', data);
   }
 
+  getAllUsers() {
+    return this.http.get<any[]>(this.apiUrl + '/users/all');
+  }
+
+  block(id: number) {
+    return this.http.post(this.apiUrl + '/users/block/' + id, {});
+}
+
+  unblock(id: number) {
+    return this.http.post(this.apiUrl + '/users/unblock/' + id, {});
+  }
+
 }
