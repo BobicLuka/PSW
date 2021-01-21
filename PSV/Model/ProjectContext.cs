@@ -18,6 +18,9 @@ namespace PSV.Model
         public DbSet<Scheduling> Shedulings { get; set; }
         public DbSet<Termin> Termins { get; set; }
 
+        public DbSet<Medicament> Medicaments { get; set; }
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder) { 
         
             if(optionBuilder.IsConfigured)

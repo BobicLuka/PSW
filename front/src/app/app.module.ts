@@ -12,7 +12,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UserService } from './services/userService';
 import { UsersListComponent } from './users-list/users-list.component';
-import { MatTableModule } from '@angular/material/table'  
+import { MatTableModule } from '@angular/material/table';
+import { MedicamentsListComponent } from './medicaments-list/medicaments-list.component';
+import { AddMedicamentsComponent } from './add-medicaments/add-medicaments.component'  
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { MatTableModule } from '@angular/material/table'
     RegisterComponent,
     FeedbackListComponent,
     CreateFeedbackComponent,
-    UsersListComponent
+    UsersListComponent,
+    MedicamentsListComponent,
+    AddMedicamentsComponent
   ],
   imports: [
     BrowserModule,

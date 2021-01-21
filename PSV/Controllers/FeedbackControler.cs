@@ -70,7 +70,7 @@ namespace PSV.Controllers
                 using (var unitOfWork = new UnitOfWork(new ProjectContext()))
                 {
 
-                    return Ok(unitOfWork.Feedbacks.GetAll());
+                    return Ok(unitOfWork.Medicaments.GetAll());
                 }
             }
             catch (Exception e)
