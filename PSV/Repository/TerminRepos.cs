@@ -1,4 +1,5 @@
-﻿using PSV.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using PSV.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,17 +25,12 @@ namespace PSV.Repository
         public List<Termin> GetAll()
         {
 
-            return context.Set<Termin>().ToList();
+            return context.Set<Termin>().Include("Doctor").Include("Patient").ToList();
         }
 
-        internal void Add(Termin termin)
+        public void Add(Termin termin)
         {
-            throw new NotImplementedException();
-        }
-
-        internal void Add(Scheduling scheduling)
-        {
-            throw new NotImplementedException();
+            context.Set<Termin>().Add(termin);
         }
     }
 }

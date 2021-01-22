@@ -26,6 +26,11 @@ namespace PSV.Repository
             return context.Set<Feedback>().ToList();
         }
 
+        public List<Feedback> GetAllPublic()
+        {
+            return context.Set<Feedback>().Where(x => x.Kom == true).ToList();
+        }
+
         public void Add(Feedback feedback)
         {
             context.Set<Feedback>().Add(feedback);

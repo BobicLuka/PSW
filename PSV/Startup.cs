@@ -30,31 +30,27 @@ namespace PSV
         {
             services.AddControllers();
 
-
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(Options =>
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
-
-                Options.RequireHttpsMetadata = false;
-                Options.SaveToken = false;
-                Options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+                options.RequireHttpsMetadata = false;
+                options.SaveToken = false;
+                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
                 {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
                     ValidAudience = Configuration["Jwt:Audience"],
-                    ValidIssuer = Configuration["Jwt:Issuer"],
+                    ValidIssuer = Configuration["Jwt:Issue"],
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
                 };
-
             });
 
-
-            services.AddCors (o => o.AddPolicy("MyPolicy", builder => 
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
                 builder.AllowAnyOrigin()
-                         .AllowAnyMethod()
-                        .AllowAnyHeader();
-
-                    }));
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }
+            ));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,11 +65,11 @@ namespace PSV
 
             app.UseRouting();
             app.UseAuthentication();
-
             app.UseAuthorization();
 
-
             app.UseCors("MyPolicy");
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

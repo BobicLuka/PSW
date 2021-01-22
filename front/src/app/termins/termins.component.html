@@ -1,0 +1,83 @@
+<div id="termin-list">
+    <h1>Termins</h1>
+    <div style="display: flex; flex-direction: row">
+        <form [formGroup]="customForm" style="display: flex; flex-direction: row">
+            <div class="form-group">
+                <div style="margin-bottom: 10px;">
+                    <select formControlName="doctor">
+                        <option *ngFor="let doctor of doctors" [ngValue]="doctor.id">
+                          {{ doctor.firstName }} {{ doctor.lastName }}
+                        </option>
+                      </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <input matInput [ngxMatDatetimePicker]="pickerFrom" placeholder="Choose a date" formControlName="dateFrom"
+                >
+                <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+                <ngx-mat-datetime-picker #pickerFrom>
+                </ngx-mat-datetime-picker>
+            </div>
+
+            <div class="form-group">
+                <input matInput [ngxMatDatetimePicker]="pickerTo" placeholder="Choose a date" formControlName="dateTo"
+                >
+                <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+                <ngx-mat-datetime-picker #pickerTo>
+                </ngx-mat-datetime-picker>
+            </div>
+
+            <div class="form-group">
+                <div style="margin-bottom: 10px;">
+                    <select formControlName="type">
+                        <option  value="doctor">
+                          Doctor
+                        </option>
+                        <option  value="date">
+                            Date
+                          </option>
+                      </select>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <button  class="btn btn-primary" (click)="search()">
+                    Search
+                </button>
+            </div>
+        </form>
+    </div>
+    <table mat-table [dataSource]="elements" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef> Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="patient">
+            <th mat-header-cell *matHeaderCellDef> Patient </th>
+            <td mat-cell *matCellDef="let element"> {{element.patient ? element.patient.firstName + element.patient.lastName: ''}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="doctor">
+            <th mat-header-cell *matHeaderCellDef> Doctor </th>
+            <td mat-cell *matCellDef="let element"> {{element.doctor ? element.doctor.firstName + element.doctor.lastName: ''}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="free">
+            <th mat-header-cell *matHeaderCellDef> Is free </th>
+            <td mat-cell *matCellDef="let element"> {{element.isFree}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Action </th>
+            <td mat-cell *matCellDef="let element">
+                   <button (click)="take($event, element)" *ngIf="element.isFree == true">Take</button> 
+                   <button (click)="cancel($event, element)" *ngIf="element.isFree == false">Cancel</button> 
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

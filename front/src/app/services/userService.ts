@@ -18,6 +18,14 @@ export class UserService {
     return this.http.post(this.apiUrl + '/token', data);
   }
 
+  getCurrentUser() {
+    return this.http.get(this.apiUrl + '/token/get-current');
+}
+
+getDoctors() {
+  return this.http.get(this.apiUrl + '/users/doctors')
+}
+
   getUser(id: string) {
     return this.http.get(this.apiUrl + '/users/' + id)
   }

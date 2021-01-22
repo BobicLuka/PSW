@@ -70,7 +70,26 @@ namespace PSV.Controllers
                 using (var unitOfWork = new UnitOfWork(new ProjectContext()))
                 {
 
-                    return Ok(unitOfWork.Medicaments.GetAll());
+                    return Ok(unitOfWork.Feedbacks.GetAll());
+                }
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+
+            return BadRequest();
+        }
+
+        [Route("/api/feedbacks/public")]
+        [HttpGet]
+        public async Task<IActionResult> GetPublic()
+        {
+            try
+            {
+                using (var unitOfWork = new UnitOfWork(new ProjectContext()))
+                {
+                    return Ok(unitOfWork.Feedbacks.GetAllPublic());
                 }
             }
             catch (Exception e)

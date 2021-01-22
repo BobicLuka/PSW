@@ -18,6 +18,10 @@ export class FeedbackService {
     return this.http.get<any[]>(this.apiUrl + '/feedbacks/all');
   }
 
+  getPublicFeedbacks() {
+    return this.http.get<any[]>(this.apiUrl + '/feedbacks/public');
+  }
+
   addFeedback(data: any) {
     return this.http.post(this.apiUrl + '/feedbacks', data);
   }

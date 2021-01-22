@@ -51,14 +51,14 @@ namespace PSV.Controllers
 
 
 
-        public async Task<IActionResult> Add(Scheduling scheduling)
+        public async Task<IActionResult> Add(Termin termin)
         {
             try
             {
                 using (var unitOfWork = new UnitOfWork(new ProjectContext()))
                 {
 
-                    unitOfWork.Termins.Add(scheduling);
+                    unitOfWork.Termins.Add(termin);
                     unitOfWork.Complete();
                 }
             }

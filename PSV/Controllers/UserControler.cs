@@ -32,6 +32,26 @@ namespace PSV.Controllers
             return Ok();
         }
 
+        [Route("/api/users/doctors")]
+        [HttpGet]
+        public async Task<IActionResult> GetAllDoctors()
+        {
+            try
+            {
+                using (var unitOfWork = new UnitOfWork(new ProjectContext()))
+                {
+
+                    return Ok(unitOfWork.Users.GetAllDoctors());
+                }
+            }
+            catch (Exception e)
+            {
+                BadRequest();
+            }
+
+            return Ok();
+        }
+
         [Route("/api/users/{id}")]
         [HttpGet]
         public async Task<IActionResult> Get(int id)
@@ -136,5 +156,7 @@ namespace PSV.Controllers
 
             return BadRequest();
         }
+
+        
     }
 }

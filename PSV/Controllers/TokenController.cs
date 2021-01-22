@@ -49,7 +49,8 @@ namespace PSV.Controllers
             }
             catch (Exception e) { }
 
-            if (user == null) {
+            if (user == null)
+            {
                 return BadRequest();
             }
 
@@ -69,19 +70,33 @@ namespace PSV.Controllers
             var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(configuration["Jwt:Issuer"], configuration["Jwt:Audience"], claims, expires: DateTime.UtcNow.AddDays(1), signingCredentials: signIn);
-            
+
             return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token) });
         }
 
-        private async Task GetUser(string email, string password)
+        [Route("/api/token/get-current")]
+        [HttpGet]
+        public async Task<ActionResult> GetCurrentUser()
         {
+            string email = HttpContext.User.Claims.FirstOrDefault(u => u.Type == "Email")?.Value;
 
+            User user = null;
 
-        
-                
+            try
+            {
+                using (var unitOfWork = new UnitOfWork(new ProjectContext()))
+                {
+                    user = unitOfWork.Users.GetUserWithEmail(email);
+                }
             }
+            catch (Exception e)
+            {
+
+            }
+
+            return Ok(user);
         }
 
     }
-
+}
 

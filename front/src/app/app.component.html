@@ -1,4 +1,38 @@
+<div *ngIf="admin == true">
+    <a href= "/home">Home</a>
+    <a href= "/user-list">Users</a>
+    <a href= "/feedback-list">Feedbacks</a>
+    <a href= "/medicaments-list">Medicaments</a>
+    <a href= "/add-medicaments">Add medicament</a>
+    <a href= "/add-termin">Add termin</a>
+    <a href= "/termins">Termins</a>
+    <a (click)="logout()" href="#">Logout</a>
+  </div> 
+  
+  <div *ngIf="doctor == true">
+    <a href= "/home">Home</a>
+      <a href= "/medicaments-list">Medicaments</a>
+      <a href= "/add-medicaments">Add medicament</a>
+      <a (click)="logout()" href="#">Logout</a>
+  </div> 
+  
+  <div *ngIf="logged == false">
+    <a href= " /home">Home</a>
+    <a href= " /login">Login</a>
+    <a href= " /register">Register</a>
+    <a (click)="logout()" href="#">Logout</a>
+  
+  </div> 
+  
+  <div *ngIf="patient == true">
+    <a href= " /">Home</a>
 
+    <a href= " /scheduling">Termins</a>
+    <a href= " /create-feedback">Add feedback</a>
+    <a href= " /">Add apointment</a>
+    <a href= " /">List of apointment</a>
+    <a (click)="logout()" href="#">Logout</a>
+  </div> 
 
 
 <router-outlet></router-outlet>

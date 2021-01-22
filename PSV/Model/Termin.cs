@@ -12,6 +12,8 @@ namespace PSV.Model
 
         public DateTime Date { get; set; }
         public User Doctor { get; set; }
+
+        public User Patient { get; set; }
         public bool IsFree { get; set; }
     }
 }

@@ -28,8 +28,19 @@ namespace PSV.Repository
             return context.Set<User>().Where(x => x.Email == email && x.Password == password ).FirstOrDefault();
         }
 
+        public User GetUserWithEmail(string email)
+        {
+            return context.Set<User>().Where(x => x.Email == email).FirstOrDefault();
+        }
+
 
         public List<User> GetAll()
+        {
+
+            return context.Set<User>().Where(x => x.Type == "DOCTOR").ToList();
+        }
+
+        public List<User> GetAllDoctors()
         {
 
             return context.Set<User>().ToList();
